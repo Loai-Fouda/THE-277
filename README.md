@@ -5,8 +5,8 @@
 
 # Team Members
 
-| # |        Name        | Student ID |
-|---|---------------------------------|
+| # |Name                | Student ID |
+|---|--------------------|------------|
 | 1 | [Loai-Fouda]       | [24040190] |
 | 2 | [Karim-Mohamed]    | [24040800] | 
 | 3 | [Ahmed-aboelmaged] | [24040814] | 
