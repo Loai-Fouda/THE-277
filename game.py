@@ -91,3 +91,41 @@ class HangmanGame:
         state["hint_letter"] = hint_letter
         state = self._check_game_over(state)
         return state
+    
+
+
+    def _build_initial_state(self, word: str, category: str) -> dict:
+        return {
+            "word":              word,
+            "category":          category,
+            "display_word":      self._build_display_word(word, []),
+            "guessed_letters":   [],
+            "correct_letters":   [],
+            "wrong_letters":     [],
+            "wrong_count":       0,
+            "max_wrong":         MAX_WRONG_ATTEMPTS,
+            "game_over":         False,
+            "player_won":        False,
+            "last_guess_correct": None,
+            "hints_used":        0,
+            "hint_letter":       None,
+        }
+
+    @staticmethod
+    def _build_display_word(word: str, correct_letters: list) -> list:
+
+        return [ch if ch in correct_letters else "_" for ch in word]
+
+    @staticmethod
+    def _check_game_over(state: dict) -> dict:
+
+        all_revealed = "_" not in state["display_word"]
+
+        if all_revealed:
+            state["game_over"] = True
+            state["player_won"] = True
+        elif state["wrong_count"] >= state["max_wrong"]:
+            state["game_over"] = True
+            state["player_won"] = False
+
+        return state
