@@ -63,3 +63,31 @@ class HangmanGame:
 
         state = self._check_game_over(state)
         return state
+    
+    def use_hint(self, state: dict) -> dict:
+
+        state = dict(state)
+
+        if state["game_over"] or state["hints_used"] >= 2:
+            return state 
+
+        hidden = [
+            ch for ch in state["word"]
+            if ch not in state["correct_letters"]
+            and ch not in state["wrong_letters"]
+            and ch.isalpha()
+        ]
+        if not hidden:
+            return state
+
+        hint_letter = random.choice(hidden)
+        state["hints_used"] += 1
+
+        state["correct_letters"].append(hint_letter)
+        state["guessed_letters"].append(hint_letter)
+        state["display_word"] = self._build_display_word(
+            state["word"], state["correct_letters"]
+        )
+        state["hint_letter"] = hint_letter
+        state = self._check_game_over(state)
+        return state
