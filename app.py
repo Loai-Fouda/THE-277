@@ -23,3 +23,25 @@ def new_game():
 
 @app.route("/guess", methods=["POST"])
 
+
+
+def guess():
+
+    game_state = session.get("game_state")
+    if not game_state:
+        return jsonify({"error": "No active game. Start a new game first."}), 400
+
+    data = request.get_json()
+    letter = data.get("letter", "").upper()
+
+ 
+    if not letter or len(letter) != 1 or not letter.isalpha():
+        return jsonify({"error": "Invalid letter. Please send a single alphabet character."}), 400
+
+   
+    game = HangmanGame()
+    updated_state = game.process_guess(game_state, letter)
+
+   
+    session["game_state"] = updated_state
+    return jsonify(updated_state)
