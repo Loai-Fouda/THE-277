@@ -45,3 +45,26 @@ def guess():
    
     session["game_state"] = updated_state
     return jsonify(updated_state)
+
+
+
+
+@app.route("/hint", methods=["POST"])
+def hint():
+
+    game_state = session.get("game_state")
+    if not game_state:
+        return jsonify({"error": "No active game."}), 400
+
+    game = HangmanGame()
+    updated_state = game.use_hint(game_state)
+    session["game_state"] = updated_state
+    return jsonify(updated_state)
+
+
+if __name__ == "__main__":
+    print("=" * 50)
+    print("Hangman Game")
+    print("  Open: http://localhost:5000")
+    print("=" * 50)
+    app.run(debug=True)
