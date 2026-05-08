@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hangman — MNU AIE 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">⚙</span>
+        <span class="logo-text">HANGMAN</span>
+      </div>
+      <div class="course-tag">MNU · THE-277 · Dr.Hanaa · Eng.Alaa Taha</div>
+    </div>
+  </header>
+
+
+  <main class="game-layout">
+
+   
+    <aside class="left-panel">
+
+      <div class="gallows-wrap">
+        <svg id="hangman-svg" viewBox="0 0 220 260" xmlns="http://www.w3.org/2000/svg">
+         
+          <line x1="20"  y1="250" x2="200" y2="250" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+          <line x1="60"  y1="250" x2="60"  y2="20"  stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+          <line x1="60"  y1="20"  x2="140" y2="20"  stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+          <line x1="140" y1="20"  x2="140" y2="50"  stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+    
+          <circle id="hm-head"  cx="140" cy="68"  r="18" stroke="var(--fg)" stroke-width="3" fill="none" class="body-part hidden"/>
+          <line   id="hm-body"  x1="140" y1="86"  x2="140" y2="160" stroke="var(--fg)" stroke-width="3" stroke-linecap="round" class="body-part hidden"/>
+          <line   id="hm-larm"  x1="140" y1="105" x2="110" y2="140" stroke="var(--fg)" stroke-width="3" stroke-linecap="round" class="body-part hidden"/>
+          <line   id="hm-rarm"  x1="140" y1="105" x2="170" y2="140" stroke="var(--fg)" stroke-width="3" stroke-linecap="round" class="body-part hidden"/>
+          <line   id="hm-lleg"  x1="140" y1="160" x2="110" y2="200" stroke="var(--fg)" stroke-width="3" stroke-linecap="round" class="body-part hidden"/>
+          <line   id="hm-rleg"  x1="140" y1="160" x2="170" y2="200" stroke="var(--fg)" stroke-width="3" stroke-linecap="round" class="body-part hidden"/>
+        </svg>
+      </div>
+
+  
+      <div class="attempt-box">
+        <span class="attempt-label">WRONG ATTEMPTS</span>
+        <div class="attempt-bubbles" id="attempt-bubbles">
+         
+        </div>
+        <span class="attempt-count"><span id="wrong-count">0</span> / 6</span>
+      </div>
+
+  
+      <button class="hint-btn" id="hint-btn" title="Use a hint (max 2 per game)">
+        💡 <span>HINT</span> <span class="hint-left" id="hint-left">(2 left)</span>
+      </button>
+
+    </aside>
+
+   
+    <section class="right-panel">
+
+    
+      <div class="category-badge" id="category-badge">Category: —</div>
+
+     
+      <div class="word-display" id="word-display">
+      
+      </div>
+
+  
+      <div class="status-msg" id="status-msg"></div>
+
+     
+      <div class="keyboard" id="keyboard">
+       
+      </div>
+
+      
+      <div class="action-row">
+        <button class="new-game-btn" id="new-game-btn">▶ NEW GAME</button>
+      </div>
+
+    </section>
+  </main>
+
+
+  <div class="overlay hidden" id="overlay">
+    <div class="overlay-card" id="overlay-card">
+      <div class="overlay-emoji" id="overlay-emoji"></div>
+      <h2 class="overlay-title" id="overlay-title"></h2>
+      <p class="overlay-word" id="overlay-word"></p>
+      <button class="overlay-btn" id="overlay-btn">PLAY AGAIN</button>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+</html>
