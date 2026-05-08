@@ -47,7 +47,7 @@ The word bank is themed around **programming and engineering** vocabulary — gr
 ##  How to Run
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/hangman-mnu-2026.git
+git clone https://github.com/Loai-Fouda/THE-277.git
 ```
 
 
